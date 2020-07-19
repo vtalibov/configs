@@ -1,0 +1,27 @@
+#!/bin/sh
+
+sxhkd &
+autostart &
+
+
+EXTERNAL_OUTPUT="DP2-1"
+INTERNAL_OUTPUT="eDP1"
+
+xrandr |grep $EXTERNAL_OUTPUT | grep " connected "
+if [ $? -eq 0 ]; then
+    xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --auto
+    bspc monitor $EXTERNAL_OUTPUT -d I II III IV V
+else
+    xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --off
+    bspc monitor $INTERNAL_OUTPUT -d I II III IV V
+fi
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   false
+bspc config gapless_monocle      false
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Screenkey manage=off
