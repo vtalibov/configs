@@ -1,0 +1,130 @@
+# Vladimir's alacritty config
+#
+
+window:
+ # Window dimensions (changes require restart)
+ # Specified in number of columns/lines, not pixels.
+
+  dimensions:
+    columns: 80
+    lines: 25
+
+  title: Terminal
+
+scrolling:
+
+  history: 10000
+  multiplier: 5
+
+# Font configuration
+
+font:
+
+  normal:
+    family: monospace
+    style: Regular
+
+  # Point size
+  size: 16.0
+
+background_opacity: 0.9
+
+# Color schemes: anchors (*schemename) define what alacritty uses
+# colors go after schemes
+
+schemes:
+
+  gruvbox_light: &gruvbox_light
+  
+    primary:
+      background: '#fbf1c7'
+      foreground: '#3c3836'
+  
+    normal:
+      black:   '#fbf1c7'
+      red:     '#cc241d'
+      green:   '#98971a'
+      yellow:  '#d79921'
+      blue:    '#458588'
+      magenta: '#b16286'
+      cyan:    '#689d6a'
+      white:   '#7c6f64'
+  
+    bright:
+      black:   '#928374'
+      red:     '#9d0006'
+      green:   '#79740e'
+      yellow:  '#b57614'
+      blue:    '#076678'
+      magenta: '#8f3f71'
+      cyan:    '#427b58'
+      white:   '#3c3836'
+
+  gruvbox_dark: &gruvbox_dark
+
+    primary:
+      background: '#282828'
+      foreground: '#ebdbb2'
+  
+    normal:
+      black:   '#282828'
+      red:     '#cc241d'
+      green:   '#98971a'
+      yellow:  '#d79921'
+      blue:    '#458588'
+      magenta: '#b16286'
+      cyan:    '#689d6a'
+      white:   '#a89984'
+  
+    bright:
+      black:   '#928374'
+      red:     '#fb4934'
+      green:   '#b8bb26'
+      yellow:  '#fabd2f'
+      blue:    '#83a598'
+      magenta: '#d3869b'
+      cyan:    '#8ec07c'
+      white:   '#ebdbb2'
+      
+  wombat: &wombat
+  
+    primary:
+      background: '#1f1f1f'
+      foreground: '#e5e1d8'
+  
+    normal:
+      black:   '#000000'
+      red:     '#f7786d'
+      green:   '#bde97c'
+      yellow:  '#efdfac'
+      blue:    '#6ebaf8'
+      magenta: '#ef88ff'
+      cyan:    '#90fdf8'
+      white:   '#e5e1d8'
+  
+    bright:
+      black:   '#b4b4b4'
+      red:     '#f99f92'
+      green:   '#e3f7a1'
+      yellow:  '#f2e9bf'
+      blue:    '#b3d2ff'
+      magenta: '#e5bdff'
+      cyan:    '#c2fefa'
+      white:   '#ffffff'
+
+#colors: *gruvbox_light
+colors: *gruvbox_dark
+#colors: *wombat
+
+# Key bindings
+
+key_bindings:
+  - { key: C,      mods: Alt,        action: Copy             }
+  - { key: V,      mods: Alt,        action: Paste            }
+  - { key: J,      mods: Alt,        action: ScrollPageDown   }
+  - { key: K,      mods: Alt,        action: ScrollPageUp     }
+  - { key: J,      mods: Alt|Shift,  action: IncreaseFontSize }
+  - { key: K,      mods: Alt|Shift,  action: DecreaseFontSize }
+  - { key: R,      mods: Alt|Shift,  action: ResetFontSize    }
+  - { key: F,      mods: Alt,        action: ToggleFullscreen }
+  - { key: N,      mods: Alt,        action: SpawnNewInstance }
