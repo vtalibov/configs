@@ -1,8 +1,4 @@
 # Vladimir's zsh configuration
-# 20200603
-
-EDITOR="nvim"
-
 
 export LC_all=en_US.UTF-8
 export LANG=en_US.UTF-8

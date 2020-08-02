@@ -4,11 +4,11 @@
 # vtalibov, 20/06/22
 
 volume() {
-	awk '/%/ {gsub(/[\[\]]/,""); print $4}' <(amixer sget Master)
+	awk '/%/ {gsub(/[\[\]]/,""); print $5}' <(amixer sget Master) | head -n 1
 }
 
 toggle() {
-	awk '/%/ {gsub(/[\[\]]/,""); print $6}' <(amixer sget Master)
+	awk '/%/ {gsub(/[\[\]]/,""); print $6}' <(amixer sget Master) | head -n 1
 }
 
 # Any unique ID to overwrite notifications
