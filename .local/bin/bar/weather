@@ -1,0 +1,4 @@
+#!/bin/sh
+# Vladimir's weather script. Very naive.
+
+curl -sf "wttr.in/$1?format=1" | awk '{print $2}'

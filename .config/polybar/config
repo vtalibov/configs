@@ -12,6 +12,12 @@ foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
+;background = ${xrdb:background:#222}
+;foreground = ${xrdb:foreground:#222}
+;foreground-alt = ${xrdb:color7:#222}
+;primary = ${xrdb:color13:#222}
+;secondary = ${xrdb:color4:#222}
+;alert = ${xrdb:color5:#222}
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -43,7 +49,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm
 ;modules-center = mpd
-modules-right = cpu filesystem memory wlan battery xkeyboard date
+modules-right = cpu filesystem memory wlan battery xkeyboard weather date
 
 tray-position = right
 tray-padding = 2
@@ -213,3 +219,11 @@ margin-top = 2
 margin-bottom = 2
 
 ; vim:ft=dosini
+
+; Vladimir's custom modules
+[module/weather]
+type = custom/script
+interval = 1800
+format-prefix = "WaF "
+format-prefix-foreground = ${colors.foreground-alt}
+exec = weather $CITY

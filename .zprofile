@@ -3,17 +3,17 @@
 # Vladimir 20/06/03
 # zsh profile, to run on login. Contains enviromental variables.
 
-export LC_CTYPE=en_GB.UTF-8
-export LC_ALL=en_GB.UTF-8
-
 # Add to PATH
-export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':')"
+export PATH=$HOME/.local/bin/bar:$HOME/.local/bin:$HOME/.cargo/bin:$PATH
 
 # Default programs
 export EDITOR="nvim"
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export BROWSER="firefox"
 export READER="zathura"
+
+# Some more variables
+export CITY=Lund
 
 # home folder to XDG Base Directory Specification
 # cleans up ~/ from dot files
