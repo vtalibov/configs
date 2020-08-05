@@ -21,7 +21,7 @@ scrolling:
 font:
 
   normal:
-    family: monospace
+    family: Hack Nerd Font
     style: Regular
 
   # Point size

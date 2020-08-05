@@ -1,161 +1,120 @@
 ; Vladimir's polybar config
 ;
 
-
 [colors]
-;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
-;background = ${xrdb:background:#222}
-;foreground = ${xrdb:foreground:#222}
-;foreground-alt = ${xrdb:color7:#222}
-;primary = ${xrdb:color13:#222}
-;secondary = ${xrdb:color4:#222}
-;alert = ${xrdb:color5:#222}
+background = #282828
+background-alt = #555048
+foreground = #ebdbb2
+yellow = #d79921
+red = #cc241d
+red-alt = #fb4934
+grey = #928374 
 
 [bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 27
-;offset-x = 1%
-;offset-y = 1%
-;radius = 6.0
 fixed-center = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 3
-line-color = #f00
+line-color = ${colors.yellow}
 
 border-size = 0
-border-color = #00000000
+border-color = ${colors.grey}
 
-padding-left = 0
-;padding-right = 2
+padding-left = 2
+padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = fixed:pixelsize=12;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-0 = mixed:pixelsize=12;1
+font-1 = mono:pixelsize=16;1
+font-2 = mono:pixelsize=18;5
 
-modules-left = bspwm
-;modules-center = mpd
+modules-left = menu-apps bspwm
 modules-right = cpu filesystem memory wlan battery xkeyboard weather date
 
 tray-position = right
 tray-padding = 2
-;tray-background = #0063ff
 
 wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
+[module/menu-apps]
+
+type = custom/menu
+label-open = "%{F#cc241d}%{F-}"
+label-close = "%{F#fb4934}%{F-}"
+label-open-font = 3
+label-close-font = 3
+label-separator = "  "
+
+menu-0-0 = "Suspend"
+menu-0-0-exec = systemctl suspend
+menu-0-1 = "Reboot"
+menu-0-1-exec = systemctl reboot
+menu-0-2 = "Power off"
+menu-0-2-exec = systemctl poweroff
 
 [module/xkeyboard]
+
 type = internal/xkeyboard
 blacklist-0 = num lock
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-;format-prefix-underline = ${colors.secondary}
 
 label-layout = %layout%
-;label-layout-underline = ${colors.secondary}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+label-indicator-background = ${colors.red}
 
 [module/filesystem]
+
 type = internal/fs
 interval = 25
 
 mount-0 = /
 
-label-mounted = %{F#555}SSD%{F-} %percentage_used%%
+label-mounted = %{F#ffb52a} %{F-} %free%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}#!/usr/bin/env bash
 
-# Terminate already running bar instances
-killall -q polybar
-# If all your bars have ipc enabled, you can also use 
-# polybar-msg cmd quit
-
-# Launch bar1 and bar2
-echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
-polybar bar1 >>/tmp/polybar1.log 2>&1 &
-polybar bar2 >>/tmp/polybar#!/usr/bin/env bash
-
-# Terminate already running bar instances
-killall -q polybar
-# If all your bars have ipc enabled, you can also use 
-# polybar-msg cmd quit
-
-# Launch bar1 and bar2
-echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
-polybar bar1 >>/tmp/polybar1.log 2>&1 &
-polybar bar2 >>/tmp/polybar2.log 2>&1 &
-
-echo "Bars launched..."2.log 2>&1 &
-
-echo "Bars launched..."
-
 [module/bspwm]
+
 type = internal/bspwm
 
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused-underline= ${colors.yellow}
 label-focused-padding = 2
 
 label-occupied = %index%
-label-occupied-padding = 2
+label-occupied-padding = 1
 
 label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-background = ${colors.red-alt}
+label-urgent-padding = 1
 
 label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
+label-empty-foreground = ${colors.grey}
+label-empty-padding = 1
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = " "
+format-prefix-foreground = ${colors.yellow}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "RAM "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = "舘  "
+format-prefix-foreground = ${colors.yellow}
 label = %percentage_used%%
 
 [module/wlan]
@@ -173,37 +132,36 @@ ramp-signal-1 = (2)
 ramp-signal-2 = (3)
 ramp-signal-3 = (4)
 ramp-signal-4 = (5)
-ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-foreground = ${colors.grey}
 
 [module/date]
 type = internal/date
 interval = 5
 
-date = %m/%d 
-date-alt = " %Y-%m-%d"
+date = "w:%V %m/%d"
+date-alt = "%m/%d"
 
 time = %H:%M
-time-alt = %H:%M:%S
+time-alt = %H:%M
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = #0a6cf5
+format-prefix = "  "
+format-prefix-foreground = ${colors.yellow}
 
 label = %date%, %time% 
 
 [module/battery]
+
 type = internal/battery
 battery = BAT1
 adapter = AC  
 full-at = 98  
 pol-interval = 5
               
-format-charging = %{F#555}AC%{F-} <label-charging>
+format-charging = %{F#d79921}AC%{F-} <label-charging>
 
-format-discharging = %{F#555}BAT%{F-} <label-discharging>
-
+format-discharging = %{F#cc241d}BAT%{F-} <label-discharging> 
 format-full-prefix = "FULL "
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = ${colors.grey}
 ;format-full-underline = ${self.format-charging-underline}
 
 [settings]
@@ -224,6 +182,6 @@ margin-bottom = 2
 [module/weather]
 type = custom/script
 interval = 1800
-format-prefix = "WaF "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = "﨎 "
+format-prefix-foreground = ${colors.primary}
 exec = weather $CITY
