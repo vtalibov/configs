@@ -1,8 +1,7 @@
 " Vladimir's neovim config
-" 2020/06/03
+"
 
 let g:python3_host_prog = '/opt/anaconda3/bin/python'
-
 let g:plugged_home = '~/.config/nvim/plugged' " vim-plug как менеджер плагинов
 
 " Plugins List
@@ -11,18 +10,16 @@ call plug#begin(g:plugged_home)
 
 "Plugins
 
-Plug 'scrooloose/nerdtree' " file explorer
-
-Plug 'vim-airline/vim-airline' " status bar 
-
+Plug 'vim-airline/vim-airline'
 Plug 'tmhedberg/SimpylFold' " better folding
-
 Plug 'Raimondi/delimitMate' " automatically close brackets and quotes
-
 Plug 'davidhalter/jedi-vim'
-
 Plug 'dense-analysis/ale'
 
+" nerdtree
+Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -53,9 +50,9 @@ nnoremap <space> za " fold with a spacebar instead of za
 
 
 " NERDTree
-map <F3> :NERDTreeFind<CR> " показать/закрыть по f3
-" autocmd vimenter * NERDTree " автостарт NERDTree
+map <F3> :NERDTreeFind<CR> " f3 to show/close nerd tree
 let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=1
 
-" Airline
-let g:airline#extensions#tabline#enabled = 1 " показать все буферы
+" Powerline
+let g:airline#extensions#tabline#enabled = 1
