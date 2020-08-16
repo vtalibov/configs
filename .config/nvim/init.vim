@@ -73,4 +73,6 @@ let g:ale_linters = {'python': ['flake8', 'pylint']}
 nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
 " compile and output
-autocmd Filetype rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+autocmd Filetype rmd map <F5> :w<cr>
+            \:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|
+            \<space>R<space>--vanilla<cr>
