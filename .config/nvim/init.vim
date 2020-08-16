@@ -13,9 +13,6 @@ Plug 'Raimondi/delimitMate' " automatically close brackets and quotes
 
 " From vimfromscratch
 Plug 'preservim/nerdcommenter' " commentaries
-Plug 'numirias/semshi'
-Plug 'dense-analysis/ale'
-Plug 'davidhalter/jedi-vim'
 
 " vim-wiki
 Plug 'vimwiki/vimwiki'
@@ -68,11 +65,5 @@ let NERDTreeShowLineNumbers=1
 " Powerline
 let g:airline#extensions#tabline#enabled = 1 " have tabs in upper bar
 
-" ALE
-let g:ale_linters = {'python': ['flake8', 'pylint']}
-nmap <silent> <C-e> <Plug>(ale_next_wrap)
-
 " compile and output
-autocmd Filetype rmd map <F5> :w<cr>
-            \:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|
-            \<space>R<space>--vanilla<cr>
+map <F5> :w!<CR>:!makepdf<Space><c-r>%<CR>

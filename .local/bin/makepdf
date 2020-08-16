@@ -1,0 +1,29 @@
+#!/bin/sh
+
+#
+# Compile a document and produce .pdf file.
+# Uses:
+# * pdflatex for TeX documents
+# * R with the rmarkdown package for R Markdown
+#
+
+fullname=$(realpath "$1")
+#dir=$(dirname "$fullname") # dirname gives relative dir
+dir=${fullname%/*}
+ext="${fullname##*.}"
+
+latex() {
+    pdflatex --output-directory="$dir" "$fullname"
+}
+
+rmarkdown() {
+    Rscript -e "rmarkdown::render('$fullname')"
+}
+
+case "$ext" in
+    tex)
+        latex
+        ;;
+    [rR]md)
+        rmarkdown
+esac
