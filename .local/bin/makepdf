@@ -2,18 +2,26 @@
 
 #
 # Compile a document and produce .pdf file.
-# Uses:
-# * pdflatex for TeX documents
-# * R with the rmarkdown package for R Markdown
+# Supports LaTeX, Markdown and R Markdown.
+# Uses: pdflatex, biber, pandoc, R with rmarkdown
+# package.
 #
 
 fullname=$(realpath "$1")
 #dir=$(dirname "$fullname") # dirname gives relative dir
 dir=${fullname%/*}
+basename=${fullname%.*}
 ext="${fullname##*.}"
 
 latex() {
+    pdflatex --output-directory="$dir" "$fullname" && \
+    biber --input-directory="$dir" "$basename" && \
+    pdflatex --output-directory="$dir" "$fullname" && \
     pdflatex --output-directory="$dir" "$fullname"
+}
+
+markdown() {
+    pandoc -o "$basename".pdf "$fullname"
 }
 
 rmarkdown() {
@@ -23,6 +31,9 @@ rmarkdown() {
 case "$ext" in
     tex)
         latex
+        ;;
+    md)
+        markdown
         ;;
     [rR]md)
         rmarkdown
