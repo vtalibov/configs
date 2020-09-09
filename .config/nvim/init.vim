@@ -10,9 +10,11 @@ call plug#begin(g:plugged_home)
 Plug 'vim-airline/vim-airline'
 Plug 'tmhedberg/SimpylFold' " better folding
 Plug 'Raimondi/delimitMate' " automatically close brackets and quotes
+Plug 'lervag/vimtex'
 
 " From vimfromscratch
 Plug 'preservim/nerdcommenter' " commentaries
+Plug 'dense-analysis/ale'
 
 " vim-wiki
 Plug 'vimwiki/vimwiki'
@@ -21,6 +23,10 @@ Plug 'vimwiki/vimwiki'
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
+
+" writing mode
+Plug 'junegunn/goyo.vim' " text-focus mode
+Plug 'reedes/vim-pencil' " better word wrap
 
 call plug#end()
 
@@ -54,7 +60,7 @@ set expandtab
 set autoindent
 
 " vim-wiki
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '/Users/vlad/Yandex.Disk.localized/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_folding = 'expr'
 
 " NERDTree
@@ -65,5 +71,13 @@ let NERDTreeShowLineNumbers=1
 " Powerline
 let g:airline#extensions#tabline#enabled = 1 " have tabs in upper bar
 
-" compile and output
+" LaTeX, R Markdown and Markdown
 map <F5> :w!<CR>:!makepdf<Space><c-r>%<CR>
+let g:tex_flavor = 'latex'
+
+" prose-related
+let g:pencil#wrapModeDefault = 'soft'
+map <F12> :Goyo<CR>:TogglePencil<CR>
+
+" python
+let g:python3_host_prog = '/usr/local/bin/python3'
